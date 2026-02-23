@@ -1,0 +1,6 @@
+pandas
+fredapi
+python-dotenv
+jupyter
+nbformat
+ipykernel
