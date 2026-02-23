@@ -1,8 +1,11 @@
 name: Deploy Quarto Site
 
 on:
+  schedule:
+    - cron: '0 6 * * *'  # rebuild daily at 6am UTC
+  workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: read
@@ -24,7 +27,9 @@ jobs:
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render site
+      - name: Render Quarto site
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
         run: quarto render
 
       - name: Upload artifact
